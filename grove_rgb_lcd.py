@@ -99,6 +99,17 @@ def create_char(location, pattern):
     location &= 0x07 # Make sure location is 0-7
     textCommand(0x40 | (location << 3))
     bus.write_i2c_block_data(DISPLAY_TEXT_ADDR, 0x40, pattern)
+    
+#clear display
+def clear_display():
+    textCommand(0x01)
+
+#turn backlight on
+def backlightOn():
+    textCommand(0x08 | 0x04)
+
+def backlightOff():
+    textCommand(0x00 | 0x04)
 
 # example code
 if __name__=="__main__":
